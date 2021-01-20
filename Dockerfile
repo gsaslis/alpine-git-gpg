@@ -1,8 +1,10 @@
-FROM alpine/git:latest
+#FROM alpine/git:latest
+FROM registry.redhat.io/ubi8/ubi-minimal
 
 LABEL Description="This is a container image with git and gpg to allow you to sign commits with GPG and push them to some other repo."
 
-RUN apk update && apk add --no-cache gnupg
+#RUN apk update && apk add --no-cache gnupg
+RUN microdnf install git
 
 # Add user name to /etc/passwd at runtime, with an arbitrary uid. Needed for openshift deployments with non-root users.
 COPY bin/fixUser.sh /usr/bin/fixUser.sh
