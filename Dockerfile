@@ -8,12 +8,14 @@ RUN apk update && apk add --no-cache gnupg
 COPY bin/fixUser.sh /usr/bin/fixUser.sh
 RUN chmod +x /usr/bin/fixUser.sh
 
-ENV HOME=/git \
+ENV HOME=/home/git \
+    USER=10001 \
     GNUPGHOME=/tmp/.gnupg
 
 RUN mkdir -p ${HOME} && \
-    chgrp -R 0 ${HOME} && \
+    chown -R ${USER}:0 ${HOME} && \
     chmod -R g=u ${HOME} /etc/passwd
 
-USER 10001
+### Containers should NOT run as root as a good practice
+USER ${USER}
 WORKDIR ${HOME}

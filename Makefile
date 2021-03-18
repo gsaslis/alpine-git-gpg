@@ -19,6 +19,6 @@ git-test:
 	$(DOCKER_RUN_COMMAND) git --version
 
 user-test:
-	$(DOCKER_RUN_COMMAND) /usr/bin/fixUser.sh
+	$(DOCKER_RUN_COMMAND) sh -c "/usr/bin/fixUser.sh | grep git && touch /home/git/babis && git config --global user.name 'test@test.com' "
 
 .PHONY: build test git-test gpg-test user-test
