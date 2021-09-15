@@ -10,7 +10,7 @@ RUN chmod +x /usr/bin/fixUser.sh
 
 ENV HOME=/home/git \
     USER=10001 \
-    GITHUB_CLI_VERSION=1.7.0\
+    GITHUB_CLI_VERSION=2.0.0\
     GNUPGHOME=/tmp/.gnupg
 
 RUN mkdir -p ${HOME} && \
